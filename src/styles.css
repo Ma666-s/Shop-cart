@@ -1,15 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
-/* Before (problematic) */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=El+Messiri...');
 
-/* After (fixed) - only load necessary weights */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+/* AFTER (fixed) - only load necessary weights */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=El+Messiri:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=El+Messiri:wght@400..700&family=Fustat:wght@500&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap'); */
+
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/Cairo-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/Cairo-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+/* Repeat for El Messiri */
 
 body {
   font-family: "El Messiri", serif;
