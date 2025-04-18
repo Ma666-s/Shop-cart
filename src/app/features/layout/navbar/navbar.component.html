@@ -1,0 +1,117 @@
+<!-- navbar.component.html -->
+<nav class="navbar" [class.scrolled]="scrolled">
+  <div class="nav-container">
+    <a class="logo" routerLink="/">
+      <img src="/images/shopping-cart (1).png" class="h-8 logo-icon" alt="cart Logo" />
+      <span>{{'Fresh Cart' | translate}}</span>
+    </a>
+
+
+    <div class="nav-links" [class.active]="menuActive">
+      <div class="nav-items">
+        @if(isLogin)
+        {
+        <a class="nav-item" routerLink="/home" routerLinkActive="active">{{'Home' | translate}}</a>
+        <a class="nav-item" routerLink="/cart" routerLinkActive="active">{{'Cart' | translate}}</a>
+        <a class="nav-item" routerLink="/products" routerLinkActive="active">{{'Products' | translate}}</a>
+        <a class="nav-item" routerLink="/categories" routerLinkActive="active">{{'Categories' | translate}}</a>
+        <a class="nav-item" routerLink="/brands" routerLinkActive="active">{{'Brands' | translate}}</a>
+        }
+        @if (!isLogin) {
+        <a routerLinkActive="active" routerLink="/login" class=" nav-item">{{'Login' | translate}}</a>
+        <a routerLinkActive="active" routerLink="/register" class=" nav-item">{{'Register' | translate}}</a>
+        }
+        @if(isLogin)
+        {
+        <a (click)="logOut()" routerLinkActive="active" class="cursor-pointer nav-item">{{'Logout' | translate}}</a>
+        }
+        <div class="flex justify-center items-center gap-3">
+          <button class="dark:text-white" routerLinkActive="text-green-300" (click)="changeLang('en')">{{'EN' | translate}}</button>
+          <button class="dark:text-white" routerLinkActive="text-green-300" (click)="changeLang('ar')">{{'AR' | translate}}</button>
+          <button (click)="theme.toggleTheme()" class="flex justify-center items-center mx-3">
+            @if (theme.darkMode()) {
+              <i class="fa-solid fa-moon dark:text-white"></i>
+            } @else {
+              <i class="fa-solid fa-sun text-transparent bg-clip-text bg-gradient-to-r to-emerald-300 from-green-400"></i>
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hamburger" (click)="toggleMenu()" [class.active]="menuActive">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </div>
+</nav>
+      <!-- Start Landing Page -->
+       @if (checkRouterLink('/home')) {
+        @if (isLogin) {
+          <div class="landing-page pt-10  dark:bg-gray-900 bg-green-50">
+            
+            <div class="content">
+              <div class="container">
+                <div class="info max-w-4xl mx-auto px-4 space-y-6">
+                  <h1 class="mt-5 dark:text-white font-light text-5xl sm:text-6xl md:text-5xl lg:text-6xl xl:text-6xl w-full ">
+                    {{'Fresh Cart' | translate}}
+                  </h1>
+                  
+                  <p class="dark:text-white/90 font-light text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
+                    {{'Discover Amazing Products at Great Prices' | translate}}
+                  </p>
+                
+                  <div class="space-x-4">
+                    <button routerLink="/products" class="text-white font-semibold text-lg bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 focus:ring-4 focus:ring-green-300/50 dark:focus:ring-green-800/50 rounded-lg px-8 py-3.5 transition-all duration-300 shadow-lg shadow-green-500/30 dark:shadow-green-900/40 hover:shadow-xl">
+                      {{'Shop Now' | translate}}
+                    </button>
+                  </div>
+                </div>
+                <div class="image flex justify-center">
+                  <img 
+                    class="mx-auto h-auto md:w-10/12 lg:w-1/2 xl:w-3/5" 
+                    src="images/undraw_empty-cart_574u.svg" 
+                    alt="Empty shopping cart illustration"
+                    loading="lazy"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+         }
+       }@else if (!checkRouterLink('/home')) {
+        @if (isLogin) {
+          <div class="hidden landing-page pt-10  dark:bg-slate-800 bg-ocean-gradient">
+            
+            <div class="content">
+              <div class="container">
+                <div class="info max-w-4xl mx-auto px-4 space-y-6">
+                  <h1 class="mt-5 dark:text-white font-light text-5xl sm:text-6xl md:text-5xl lg:text-6xl xl:text-6xl w-full ">
+                    {{'Fresh Cart' | translate}}
+                  </h1>
+                  
+                  <p class="dark:text-white/90 font-light text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
+                    {{'Discover Amazing Products at Great Prices' | translate}}
+                  </p>
+                
+                  <div class="space-x-4">
+                    <button class="text-white font-semibold text-lg bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 focus:ring-4 focus:ring-green-300/50 dark:focus:ring-green-800/50 rounded-lg px-8 py-3.5 transition-all duration-300 shadow-lg shadow-green-500/30 dark:shadow-green-900/40 hover:shadow-xl">
+                      {{'Shop Now' | translate}}
+                    </button>
+                  </div>
+                </div>
+                <div class="image flex justify-center">
+                  <img 
+                    class="mx-auto h-auto md:w-10/12 lg:w-1/2 xl:w-3/5" 
+                    src="images/undraw_empty-cart_574u.svg" 
+                    alt="Empty shopping cart illustration"
+                    loading="lazy"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+         }
+       }
+      <!-- End Landing Page -->

@@ -1,0 +1,147 @@
+.head-rating {
+    position: relative;
+}
+
+.cat-rating {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-around;
+    border: 3px solid #4ae257;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom: none;
+    padding: 2%;
+}
+
+.search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-field {
+    border: none;
+    border-bottom: 2px solid #e0e0e05d;
+    border-radius: 0;
+    padding-left: 40px;
+    width: 100%;
+    @apply dark:bg-slate-700;
+}
+
+.search-field:focus {
+    border-color: #4ae28e;
+    box-shadow: 0 2px 8px rgba(74, 226, 142, 0.744);
+}
+
+.search-field::placeholder {
+    color: #9e9e9e;
+    opacity: 1;
+}
+
+.search-button {
+    position: absolute;
+    left: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    fill: #1ceb5e;
+    transition: fill 0.3s ease;
+}
+
+.search-field:focus+.search-button .search-icon {
+    fill: #4ae257;
+}
+
+/* Dark Mode Variant */
+.dark .search-field {
+    background-color: #12b255;
+    border-color: #10a75e;
+    color: #ffffff;
+}
+
+.dark .search-field::placeholder {
+    color: #a0a0a0;
+}
+
+.dark .search-icon {
+    fill: #a0a0a0;
+}
+
+.dark .search-field:focus {
+    border-color: #4ae27d;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.2em;
+    margin: 20px 0;
+  }
+  
+  .error-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #dc3545;
+    margin: 20px 0;
+  }
+  
+  .no-results {
+    text-align: center;
+    font-size: 1.2em;
+    color: #6c757d;
+    margin: 20px 0;
+  }
+  
+  .search-results ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .search-results li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .products-heading {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+    @apply dark:text-white;
+  }
+  
+  .title-divider {
+    width: 60px;
+    height: 3px;
+    background: #2F7E4D;
+    margin: 0 auto 1rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: #4a5568;
+    font-weight: 400;
+    @apply dark:font-thin text-gray-400;
+  }

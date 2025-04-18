@@ -1,0 +1,112 @@
+<div class="container mx-auto w-9/12 pt-32">
+    <h1 class="mb-4 text-3xl text-center font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent font-semibold bg-clip-text bg-gradient-to-r to-green-300 from-green-400">{{'Register' | translate}}</span></h1>
+
+    @if(errorMessage().length > 0)
+    {
+        <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium">{{errorMessage()}} !</span>
+          </div>
+    }
+    <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+        <div class="mb-3">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'Name' | translate}}</label>
+            <input formControlName="name" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'Name' | translate}}.."  />
+
+            @if (registerForm.get('name')?.errors && registerForm.get('name')?.touched) {
+                @if (registerForm.get('name')?.getError('required')) {
+                    <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                         {{'Required' | translate}} !
+                      </div>
+                }
+                @else if (registerForm.get('name')?.getError('minlength')) {
+                    <div class="p-3 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Characters' | translate}}</span> {{'must be greater than 2' | translate}} !
+                      </div>
+                }
+                @else if (registerForm.get('name')?.getError('maxlength')) {
+                    <div class="p-3 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Characters' | translate}}</span> {{'must be less than 15' | translate}} !
+                      </div>
+                }
+            }
+        </div> 
+        <div class="mb-3">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'Email' | translate}}</label>
+            <input formControlName="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'Email' | translate}}.."  />
+             @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched) {
+                @if (registerForm.get('email')?.getError('required')) {
+                    <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Email' | translate}} !</span>{{'is Required' | translate}} !
+                      </div>
+                }
+                @else if (registerForm.get('email')?.getError('email')) {
+                    <div class="p-3 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Please' | translate}} !</span> {{'enter valid email' | translate}}
+                      </div>
+                }
+            }
+        </div> 
+        <div class="mb-3">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'Password' | translate}}</label>
+            <input formControlName="password" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'Password' | translate}}.."  />
+            @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched) {
+                @if (registerForm.get('password')?.getError('required')) {
+                    <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Password' | translate}} !</span>{{'is Required'}} !
+                      </div>
+                }
+                @else if (registerForm.get('password')?.getError('pattern')) {
+                    <div class="p-3 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Password' | translate}} !</span> {{'must start with a capital letter and be at least 6 and not more than 10 characters long ' | translate}}
+                      </div>
+                }
+            }
+        </div> 
+        <div class="mb-3">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'Re-password' | translate}}</label>
+            <input formControlName="rePassword" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'Re-password' | translate}}.."  />
+            @if (registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched) {
+                @if (registerForm.get('rePassword')?.getError('required')) {
+                    <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'rePassword' | translate}} !</span>{{'is Required' | translate}} !
+                      </div>
+                }
+                @else if (registerForm.get('rePassword')?.getError('pattern')) {
+                    <div class="p-3 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'rePassword' | translate}} !</span> {{'must start with a capital letter and be at least 6 and not more than 10 characters long' | translate}} 
+                      </div>
+                }
+            }
+            @if (registerForm.errors && registerForm.touched && registerForm.get('rePassword')?.touched) {
+                <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">{{'rePassword and password' | translate}} !</span>{{'is not matched' | translate}} !
+                  </div>
+            }
+        </div> 
+        <div class="mb-3">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'Phone' | translate}}</label>
+            <input formControlName="phone" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'Phone' | translate}}"  />
+            @if (registerForm.get('phone')?.errors && registerForm.get('phone')?.touched) {
+                @if (registerForm.get('phone')?.getError('required')) {
+                    <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'phone' | translate}} !</span>{{'is Required' | translate}} !
+                      </div>
+                }
+                @else if (registerForm.get('phone')?.getError('pattern')) {
+                    <div class="p-3 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Phone number' | translate}} !</span>  {{'must start with 01 and be 11 digits only' | translate}} 
+                      </div>
+                }
+              
+            }
+        </div>
+        <button [disabled]="registerForm.invalid" type="submit" class="w-full text-white p-3 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 disabled:bg-green-300">
+            {{'Register' | translate}}
+            @if (isLoading()) {
+              <i class="fa-solid fa-spinner fa-spin ml-2"></i>
+            } @else {
+              <span>&nbsp;</span> <!-- مسافة إذا لم يكن هناك spinner -->
+            }
+          </button>
+    </form>
+</div>

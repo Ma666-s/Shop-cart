@@ -1,0 +1,38 @@
+.head-title
+{
+    position: relative;
+    
+}
+.title
+{
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.566);
+    
+    min-height: 8vh;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-10%);
+}
+.head-title:hover .title
+{
+    opacity: 1;
+    transform: translateY(10%);
+}
+img
+{
+    transition: all 0.5s ease-in-out;
+}
+.head-title:hover img
+{
+    transform: scale(0.90);
+}
+.product-rating {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.star {
+    color: #ffcc00; /* Gold color for stars */
+    font-size: 1.5rem;
+}

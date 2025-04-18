@@ -1,0 +1,40 @@
+
+<!-- product-details.component.html -->
+<section class="pt-32 pb-10">
+<div class="product-details w-9/12">
+    <div class="product-image">
+        <img [src]="pDetails.imageCover" alt="product Image">
+    </div>
+    <div class="product-info">
+        <h1 class="product-title">{{pDetails.title}}</h1>
+        <div class="product-rating">
+           @for (star of getStars().full; track $index) {
+            <span class="star">★</span>
+           }
+           @for (star of getStars().half; track $index) {
+            <span class="star">★½</span>
+           }
+           @for (star of getStars().empty; track $index) {
+            <span class="star">☆</span>
+           }
+            <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-green-200 dark:text-green-800 mx-3 ">{{pDetails.ratingsAverage}}</span>
+        </div>
+        <p class="product-description dark:text-white font-light">
+            {{pDetails.description}}
+        </p>
+        <p class="product-description dark:text-white">
+           <span class="font-semibold text-lg">{{'Category' | translate}}: </span> {{pDetails.category.name}}
+        </p>
+        <p class="product-description dark:text-white">
+            <span class="font-semibold text-lg">{{'Brand' | translate}}: </span> {{pDetails.brand.slug}}
+        </p>
+        <p class="product-description dark:text-white">
+            <span class="font-semibold text-lg">{{'Quantity' | translate}}: </span> {{pDetails.quantity}}
+        </p>
+        <div class="product-price">
+            <span class="current-price">{{pDetails.price}} {{'EGP' | translate}}</span>
+        </div>
+  <button (click)="addToCart(pDetails._id)" class="w-full text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">{{'Add to cart' | translate}}</button>
+    </div>
+</div>
+</section>

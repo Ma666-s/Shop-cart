@@ -1,0 +1,86 @@
+
+<!-- Slider -->
+<section class="min-h-[100vh] flex flex-col justify-center items-center bg-gray-50 dark:bg-slate-800 dark:text-white">
+  <div class="products-heading">
+    <h2 class="section-title">{{'Shop Products' | translate}}</h2>
+    <div class="title-divider"></div>
+    <p class="section-subtitle">{{'جودة متميزة لتلبية احتياجاتك اليومية' | translate}}</p>
+  </div>
+  <div class="w-3/4 mx-auto rounded-lg">
+    <owl-carousel-o [options]="customOptions">
+      @for (slide of allProducts(); track $index) {
+        <ng-template carouselSlide>
+          <div class="head-rating">
+            <img class="rounded-lg" [src]="slide.imageCover">
+            <div class="cat-rating bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-green-200 dark:text-green-800 ms-3">
+              {{slide.ratingsAverage}} <i style="color: gold;" class="fa-solid fa-star"></i>
+            </div>
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+    <div class="flex justify-center items-center mt-10">
+      <button routerLink="/products" class="
+        px-8 py-3 
+        border 
+        border-green-500 
+        text-green-500 
+        bg-transparent 
+        rounded-md 
+        hover:bg-green-500 
+        hover:text-white 
+        hover:scale-105 
+        transition-all 
+        duration-250
+      ">
+        {{'View Products' | translate}}
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Uncomment if you want to use the search functionality -->
+<!--
+<div class="search-container">
+  <div class="search-input">
+    <input [(ngModel)]="userWord" type="text" placeholder="{{'Search Name' | translate}}..." class="search-field dark:text-white">
+    <button class="search-button">
+      <svg class="search-icon" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="search-input">
+    <input [formControl]="pPrice" type="text" placeholder="{{'Search Price' | translate}}..." class="search-field dark:text-white">
+    <button class="search-button">
+      <svg class="search-icon" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+@if (loading()) {
+  <div class="loading-spinner text-gray-600 dark:text-slate-300">
+    Search loading ...<i class="fa-solid fa-spinner fa-spin"></i>
+  </div>
+} @else if (errorMessage()) {
+  <div class="error-message">
+    {{ errorMessage() }}
+  </div>
+} @else if (hasSearched() && searchResults().length === 0) {
+  <div class="no-results">
+    No results found.
+  </div>
+}
+
+<div class="container flex justify-center mx-auto my-4 px-5">
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+    @for (product of allProducts() | search: userWord(); track $index) {
+      <app-card class="cursor-pointer" [cardProduct]="product"></app-card>
+    }
+  </div>
+</div>
+-->
+
+<app-head-home></app-head-home>

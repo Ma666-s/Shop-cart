@@ -1,0 +1,55 @@
+<section class="pt-32">
+<h1 class="mb-4 text-3xl text-center font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent font-semibold bg-clip-text bg-gradient-to-r to-green-300 from-green-400">{{'Login' | translate}}</span></h1>
+
+<div class="container mx-auto w-9/12 dark:bg-gray-900">
+    @if(errorMessage().length > 0)
+    {
+        <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium">{{errorMessage()}} !</span>
+          </div>
+    }
+    <form [formGroup]="loginForm"  (ngSubmit)="loginSubmit()">
+     
+        <div class="mb-3">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'Email' | translate}}</label>
+            <input formControlName="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'Email' | translate}}.."  />
+             @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+                @if (loginForm.get('email')?.getError('required')) {
+                    <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Email' | translate}} </span>{{'is Required' | translate}} !
+                      </div>
+                }
+                @else if (loginForm.get('email')?.getError('email')) {
+                    <div class="p-3 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Please' | translate}} !</span> {{'enter valid email' | translate}}
+                      </div>
+                }
+            }
+        </div> 
+        <div class="mb-3">
+            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{'Password' | translate}}</label>
+            <input formControlName="password" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="{{'Password' | translate}}.."  />
+            @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
+                @if (loginForm.get('password')?.getError('required')) {
+                    <div class="p-3 mb-4  mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{'Password' | translate}} </span>{{'is Required' | translate}} !
+                      </div>
+                }
+                
+            }
+        </div> 
+        <div class="mb-2">
+            <a routerLink="/forget-password" class="text-green-500 cursor-pointer text-xs ">{{'Forget Password ?' | translate}}</a>
+        </div>
+       
+        <button [disabled]="loginForm.invalid" type="submit" class="text-white p-3 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm  py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 disabled:bg-green-300">{{'Login' | translate}}
+            @if (isLoading()) {
+                <i class="fa-solid fa-spinner fa-spin ml-2"></i>
+              } @else {
+                <span>&nbsp;</span>
+              }
+        </button>
+    </form>
+</div>
+
+</section>

@@ -1,0 +1,35 @@
+<section class="pt-20">
+  <div class="orders-container">
+    @for (item of allOrders; track $index) {
+      <div class="order-card">
+        <div class="product-image">
+          <img [src]="item.product.imageCover" alt="{{item.product.title}}"/>
+        </div>
+        
+        <div class="product-details">
+          <h3 class="product-title">{{item.product.title}}</h3>
+          
+          <div class="stats-container">
+            <div class="stat-item">
+              <span class="stat-label">Quantity:</span>
+              <span class="stat-value">{{item.count}}</span>
+            </div>
+            
+            <div class="stat-item">
+              <span class="stat-label">Price:</span>
+              <span class="stat-value">{{item.price | currency}}</span>
+            </div>
+            
+            <div class="stat-item">
+              <span class="stat-label">Rating:</span>
+              <span class="stat-value">
+                {{item.product.ratingsAverage}} 
+                <span class="star-icon">★</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

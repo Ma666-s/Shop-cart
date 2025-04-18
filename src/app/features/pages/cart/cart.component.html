@@ -1,0 +1,69 @@
+<section class="pt-32">
+<h1 class=" mb-4 text-3xl text-center font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent font-semibold bg-clip-text bg-gradient-to-r to-green-300 from-green-400">{{'Shop Cart' | translate}}</span></h1>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg py-5">
+   <div class="group flex justify-around items-center my-3">
+    <button (click)="clearAllProductsCart()" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">{{'Clear All' | translate}}</button>
+    <h3 class="mb-4 text-right font-extralight leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">{{'Total Price'| translate}} :<span class="underline underline-offset-2 decoration-5 decoration-green-400 dark:decoration-green-600">{{totalPrice}}</span></h3>
+    <button [routerLink]="['/address', cartId]" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">{{'Request Orders' | translate}}</button>
+   </div>
+    <table class="w-[90%] mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-16 py-3">
+                    <span class="sr-only">{{'Image' | translate}}</span>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{'Product' | translate}}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{'Qty' | translate}}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{'Price' | translate}}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{'Action' | translate}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+         @for (product of cartProducts; track $index) {
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="p-4">
+                    <img [src]="product.product.imageCover" class="w-16 md:w-32 max-w-full max-h-full rounded-s-2xl" alt="Apple Watch">
+                </td>
+                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                    {{product.product.title}}
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center">
+                        <button (click)="chnageCount(product.product._id, product.count -1)"  class="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                            <span class="sr-only">Quantity button</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                            </svg>
+                        </button>
+                        <div>
+                            <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [value]="product.count" required />
+                        </div>
+                        <button (click)="chnageCount(product.product._id, product.count +1)" class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                            <span class="sr-only">Quantity button</span>
+                            <svg  class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                    {{product.price * product.count}}
+                </td>
+                <td class="px-6 py-4">
+                    <a (click)="removeProduct(product.product._id)" class="font-medium cursor-pointer text-red-600 dark:text-red-500 hover:underline">{{'Remove' | translate}}</a>
+                </td>
+            </tr>
+         }
+        </tbody>
+    </table>
+</div>
+</section>

@@ -1,0 +1,35 @@
+<div class="group w-full max-w-sm p-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+  <div class="head-title" [routerLink]="['/products-details', cardProduct._id]">
+    <a>
+      <img class="p-3 rounded-2xl" [src]="cardProduct.imageCover" alt="product image" />
+    </a>
+    <div class="">
+      <a class="w-full title flex justify-center items-center rounded-2xl p-2 dark:bg-teal-200">
+        <h5 class="text-xl text-white font-extralight tracking-tight dark:text-white">{{cardProduct.title}}</h5>
+      </a>
+      <div class="flex justify-between items-center">
+        <div class="flex  flex-col items-center justify-center">
+          <div class="product-rating">
+            @for (star of getStars().full; track $index) {
+             <span class="star">★</span>
+            }
+            @for (star of getStars().half; track $index) {
+             <span class="star">★½</span>
+            }
+            @for (star of getStars().empty; track $index) {
+             <span class="star">☆</span>
+            }
+            <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-green-200 dark:text-green-800 ms-3">{{cardProduct.ratingsAverage}}</span>
+         </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="text-3xl font-bold text-gray-900 dark:text-white">{{cardProduct.price}} EGP</span>
+      </div>
+    </div>
+  </div>
+  <div class="mt-3 flex justify-center self-center items-center rounded-lg">
+    <button (click)="addToCart(cardProduct.id)" class="w-full text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >
+      {{'Add to cart' | translate}}</button>
+  </div>
+</div>

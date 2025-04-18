@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=El+Messiri:wght@400..700&family=Fustat:wght@500&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap');
+body {
+  font-family: "El Messiri", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+/* Link nav bar Activated */ 
+.active-link {
+    color: black;
+    text-decoration: none;
+    border: none;
+    background: none;
+  }
+  
+  .active-link::after {
+    margin-left: auto;
+  }
+  
+  .v::after, .active-link::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #2ddf80;
+    display: block;
+    transition: 0.5s;
+  }
+  
+  .active-link:hover::after, .active-link:hover::before {
+    width: 100%;
+  }
+
+  @keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .animate-gradient-flow {
+    animation: gradient-flow 12s ease infinite;
+  }
