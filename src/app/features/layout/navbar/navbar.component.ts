@@ -47,6 +47,18 @@ export class NavbarComponent{
   toggleMenu() {
     this.menuActive = !this.menuActive;
   }
+
+   // أغلق القائمة عند النقر خارجها
+   @HostListener('document:click', ['$event'])
+   onClick(event: MouseEvent) {
+     const target = event.target as HTMLElement;
+     const isMenuButton = target.closest('.hamburger'); // تأكد أن النقر ليس على الزر نفسه
+ 
+     if (!isMenuButton && this.menuActive) {
+       this.menuActive = false;
+     }
+   }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.scrolled = window.scrollY > 50;

@@ -27,7 +27,7 @@
     color: #333;
     background-color: #fff;
     transition: border-color 0.2s ease;
-    @apply dark:bg-slate-600 dark:border-green-400 dark:text-white;
+    @apply dark:bg-slate-600 dark:border-gray-500 dark:text-white;
   }
   
   .search-field:focus {
@@ -118,8 +118,7 @@
   /* Dark Mode */
   @media (prefers-color-scheme: dark) {
     .search-field {
-      background-color: #2d3748;
-      border-color: #4a5568;
+      
       color: #f7fafc;
     }
   
