@@ -63,13 +63,7 @@ export class NavbarComponent{
   onWindowScroll() {
     this.scrolled = window.scrollY > 50;
   }
-  openDropdown() {
-    // Add logic for touch devices if needed
-  }
-
-  closeDropdown() {
-    // Add logic for touch devices if needed
-  }
+ 
 
    @HostBinding('class.dark') get mode(){
     return this.darkMode();
