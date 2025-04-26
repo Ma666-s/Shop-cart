@@ -14,10 +14,10 @@ import { ProductDetailsComponent } from './features/pages/product-details/produc
 import { ForgetPasswordComponent } from './features/auth/forgotpassword/forgotpassword.component';
 
 export const routes: Routes = [
-    {path:"", redirectTo:"home", pathMatch:"full"},
+    {path:"", redirectTo:"products", pathMatch:"full"},
     {path:"home", component:HomeComponent, title:"Home", canActivate:[authGuard]},
     {path:"cart", component:CartComponent, title:"Cart", canActivate:[authGuard]},
-    {path:"products", component:ProductsComponent, title:"Products", canActivate:[authGuard]},
+    {path:"products", component:ProductsComponent, title:"Products"},
     {path:"categories", loadComponent: ()=> import('./features/pages/categories/categories.component').then(catClasses => catClasses.CategoriesComponent), title:"Categories", canActivate:[authGuard]},
     {path:"brands", loadComponent: ()=> import('./features/pages/brands/brands.component').then(brandClasses => brandClasses.BrandsComponent), title:"Brands", canActivate:[authGuard]},
     {path:"allorders", component:AllordersComponent, title:"All Orders", canActivate:[authGuard]},
