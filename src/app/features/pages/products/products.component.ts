@@ -53,16 +53,16 @@ searchWithPrice() {
       if (query) {
         this.loading.set(true);
         this.hasSearched.set(true);
-        this.errorMessage.set(''); // إعادة تعيين رسالة الخطأ
+        this.errorMessage.set(''); 
         return this.productService.getSpecProductsPrice(query).pipe(
           catchError(err => {
             this.errorMessage.set('Failed to load products. Please try again later.');
-            return of({data: []}); // إرجاع مصفوفة فارغة في حالة الخطأ
+            return of({data: []}); 
           })
         );
       } else {
         this.hasSearched.set(false);
-        this.searchResults.set([]); // إعادة تعيين نتائج البحث
+        this.searchResults.set([]); 
         this.getAllProductsHome();
         return of(null);
       }
@@ -72,7 +72,6 @@ searchWithPrice() {
     next: (res) => {
       this.loading.set(false);
       if (res === null) {
-        // حالة عدم وجود بحث
         return;
       }
       
