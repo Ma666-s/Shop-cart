@@ -10,12 +10,13 @@ export class OrdersService {
 
   private httpClient : HttpClient = inject(HttpClient)
   userhead : any = {token : localStorage.getItem('userToken')}
+   currentUrl = window.location.origin;
 
   constructor() { }
 
   checkOut(cartId:string, addressFormValue:any):Observable<any>
   {
-    return this.httpClient.post(`${Env.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${Env.localUrl}`, {shippingAddress:addressFormValue},
+    return this.httpClient.post(`${Env.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${this.currentUrl}`, {shippingAddress:addressFormValue},
       {headers: this.userhead}
     )
   }
